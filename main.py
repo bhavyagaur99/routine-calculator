@@ -10,9 +10,9 @@ import cmd
 filename = gr.get_savefile_name()
 load.load(filename=filename)
 
-print('date:', gr.get_today())
-print('time:', dt.time_format_1())
+print(gr.get_today(), dt.time_format_1())
 print('Type "help me" to print help')
+print()
 
 
 while True:

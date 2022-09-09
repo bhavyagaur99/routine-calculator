@@ -25,7 +25,7 @@ data_store = {  # default start values if map.json not found
 }
 
 if debug:
-    print('base dir:', base_dir)
+    print()
     print('database path:', database_path)
 
 
@@ -49,7 +49,10 @@ def get_savefile_name() -> str:
 
 def get_today() -> str:
     t = datetime.datetime.today()
-    return f'{t.day}-{t.month}-{t.year}'
+    d = "{:02d}".format(t.day)
+    m = "{:02d}".format(t.month)
+    y = f'{t.year}'
+    return '/'.join([d, m, y])
 
 
 def get_savefile_name_custom(year: int, month: int, day: int) -> str:

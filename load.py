@@ -20,4 +20,4 @@ def load(filename):
             elif version == '1.0':
                 gr.data_store = data_json
     except FileNotFoundError:
-        print('File does not exit')
+        print('Starting fresh with default values')
