@@ -1,2 +1,2 @@
 # routine-calculator
-A simple application to track where you spend your time.
+An application to track where you spend your time.

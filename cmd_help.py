@@ -1,5 +1,5 @@
 def get():
-    output = """
+    output = '''
     
     commands and description 
     ========================
@@ -88,5 +88,5 @@ def get():
         syntax: diff <start date> <start time> <end date> <end time>
         example: diff 5/3/2020 17:30:0 4/4/2020 23:12:0
 
-"""
+'''
     return output

@@ -3,7 +3,7 @@ import re
 
 
 def check_time_format(time):
-    regex_time = "\d{1,2}:\d{1,2}:\d{1,2}"
+    regex_time = '\d{1,2}:\d{1,2}:\d{1,2}'
 
     if len(re.findall(regex_time, time)) != 1:
         return False
@@ -12,7 +12,7 @@ def check_time_format(time):
 
 
 def check_date_format(date):
-    regex_date = "\d{1,2}/\d{1,2}/\d{4}"
+    regex_date = '\d{1,2}/\d{1,2}/\d{4}'
 
     if len(re.findall(regex_date, date)) != 1:
         return False
@@ -21,9 +21,9 @@ def check_date_format(date):
 
 
 def check_format(date, time, zone):
-    regex_date = "\d{1,2}/\d{1,2}/\d{4}"
-    regex_time = "\d{1,2}:\d{1,2}:\d{1,2}"
-    regex_zone = "[a-z]{2,32}"
+    regex_date = '\d{1,2}/\d{1,2}/\d{4}'
+    regex_time = '\d{1,2}:\d{1,2}:\d{1,2}'
+    regex_zone = '[a-z]{2,32}'
 
     if len(re.findall(regex_date, date)) != 1:
         return False
@@ -38,7 +38,7 @@ def check_format(date, time, zone):
 
 
 def extract_date(date):
-    d, mo, y = date.split("/")
+    d, mo, y = date.split('/')
     d = int(d)
     mo = int(mo)
     y = int(y)
@@ -46,7 +46,7 @@ def extract_date(date):
 
 
 def extract_time(time):
-    h, m, s = time.split(":")
+    h, m, s = time.split(':')
     h = int(h)
     m = int(m)
     s = int(s)
@@ -89,7 +89,8 @@ def check_time(time):
 
 def check_date_and_time(v):
     try:
-        datetime.datetime(year=v[0], month=v[1], day=v[2], hour=v[3], minute=v[4], second=v[5])
+        datetime.datetime(year=v[0], month=v[1], day=v[2],
+                          hour=v[3], minute=v[4], second=v[5])
         return True
     except ValueError:
         return False
@@ -97,7 +98,8 @@ def check_date_and_time(v):
 
 def convert_date_and_time_to_seconds(v):
     try:
-        val1 = datetime.datetime(year=v[0], month=v[1], day=v[2], hour=v[3], minute=v[4], second=v[5])
+        val1 = datetime.datetime(
+            year=v[0], month=v[1], day=v[2], hour=v[3], minute=v[4], second=v[5])
         val2 = datetime.datetime(year=1970, month=1, day=1)
         return abs((val2 - val1).total_seconds())
     except ValueError:
@@ -109,4 +111,4 @@ def now():
 
 
 def time_format_1():
-    return datetime.datetime.now().strftime("%H:%M:%S")
+    return datetime.datetime.now().strftime('%H:%M:%S')
