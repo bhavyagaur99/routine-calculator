@@ -3,8 +3,6 @@ import sys
 import os
 import datetime
 import calendar
-import cmd_set
-import cmd_delvar
 import cmd_pmap
 import cmd_plresult
 import cmd_cal
@@ -66,7 +64,7 @@ def execute(cmd):
         cmd_cal.print_result()
     elif words[0] == 'plresult':
         cmd_plresult.print_last_result()
-    elif words[0] == 'set' and len(words) > 2:
+    elif words[0] in ['set', 'setvar'] and len(words) > 2:
         if not gr.check_variable_syntax(words[1]):
             return False
         i = 2
@@ -74,13 +72,23 @@ def execute(cmd):
             i = 3
         if not gr.check_value_syntax(words[i]):
             return False
+        key = words[1]
+        value = words[i]
+        value_old = gr.data_store['variables'].get(key, None)
+        gr.update_variable_in_store(key, value)
+        if value_old:
+            print(f'Updated: {key} from {value_old} to {value}')
+        else:
+            print(f'Created: {key} -> {value}')
 
-        cmd_set.set_var(var=words[1], val=words[i])
-
-    elif words[0] == 'delvar' and len(words) > 1:
+    elif words[0] in ['del', 'delvar'] and len(words) > 1:
         if not gr.check_variable_syntax(words[1]):
             return False
-        cmd_delvar.remove_var(words[1])
+        obj, ok = gr.delete_variable_in_store(words[1])
+        if ok == True:
+            print(f'Deleted: {obj[0]} -> {obj[1]}')
+        else:
+            print(f'Error: variable does not exist')
 
     elif words[0] == 'autoscrclr' and len(words) > 1:
         i = 1

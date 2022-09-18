@@ -30,11 +30,23 @@ if debug:
     print('database path:', database_path)
 
 
-def update_variable_store(key, value):
+def update_variable_in_store(key, value):
     global data_store
     data_store['variables'][key] = value
     filename = get_savefile_name()
     store.savemap(filename, data_store)
+    return [key, value], True
+
+def delete_variable_in_store(key):
+    global data_store
+    try:
+        value = data_store['variables'][key]
+        del data_store['variables'][key]
+        filename = get_savefile_name()
+        store.savemap(filename, data_store)
+        return [key, value], True
+    except Exception as e:
+        return e, False
 
 
 def get_database_path() -> str:
