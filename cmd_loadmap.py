@@ -2,5 +2,5 @@ import load
 
 
 def load(filename):
-    print('filename =', filename)
+    print('Filename:', filename)
     load.load(filename)

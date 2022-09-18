@@ -1,5 +1,4 @@
 import global_resource as gr
-import date_and_time as dt
 import sys
 import os
 import datetime
@@ -25,7 +24,7 @@ def execute(cmd):
     if words[0] == 'help':
         print(cmd_help.get())
     elif words[0] in ['quit', 'exit']:
-        print('program is now exiting\n')
+        print('exiting ...\n')
         sys.exit()
     elif words[0] in ['clear', 'cls']:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -33,16 +32,16 @@ def execute(cmd):
         cmd_pmap.print_map()
     elif words[0] in ['savemap', 'smap']:
         if len(words) == 1:
-            cmd_savemap.save_by_today(gr.get_today())
+            cmd_savemap.save_by_today()
             return True
         elif len(words) > 1:
             i = 1
             if words[1] == '=':
                 i = 2
             date = words[i]
-            if not dt.check_date(date):
+            if not gr.check_date(date):
                 return False
-            year, month, day = dt.extract_date(date)
+            year, month, day = gr.extract_date(date)
             today = f'{day}-{month}-{year}'
             cmd_savemap.save_by_today(today)
             return True
@@ -56,9 +55,9 @@ def execute(cmd):
             if words[1] == '=':
                 i = 2
             date = words[i]
-            if not dt.check_date(date):
+            if not gr.check_date(date):
                 return False
-            year, month, day = dt.extract_date(date)
+            year, month, day = gr.extract_date(date)
             today = f'{day}-{month}-{year}'
             cmd_loadmap.load_by_today(today)
             return True
@@ -99,14 +98,14 @@ def execute(cmd):
         date = words[i]
         time = words[i + 1]
 
-        if not dt.check_date(date):
+        if not gr.check_date(date):
             return False
 
-        if not dt.check_time(time):
+        if not gr.check_time(time):
             return False
 
-        y, mo, d = dt.extract_date(date)
-        h, m, s = dt.extract_time(time)
+        y, mo, d = gr.extract_date(date)
+        h, m, s = gr.extract_time(time)
 
         start = datetime.datetime(
             year=y, month=mo, day=d, hour=h, minute=m, second=s)
@@ -134,9 +133,9 @@ def execute(cmd):
             if words[1] == '=':
                 i = 2
             date = words[i]
-            if not dt.check_date(date):
+            if not gr.check_date(date):
                 return False
-            y, mo, d = dt.extract_date(date)
+            y, mo, d = gr.extract_date(date)
             print('\n' + calendar.month(theyear=y, themonth=mo))
             return True
 
@@ -163,19 +162,19 @@ def execute(cmd):
         end_date = words[3]
         end_time = words[4]
 
-        if (not dt.check_date(start_date)) or (not dt.check_date(end_date)) or (not dt.check_time(start_time)) or (
-                not dt.check_time(end_time)):
+        if (not gr.check_date(start_date)) or (not gr.check_date(end_date)) or (not gr.check_time(start_time)) or (
+                not gr.check_time(end_time)):
             return False
 
-        y, mo, d = dt.extract_date(start_date)
-        h, m, s = dt.extract_time(start_time)
+        y, mo, d = gr.extract_date(start_date)
+        h, m, s = gr.extract_time(start_time)
 
         start = datetime.datetime(
             year=y, month=mo, day=d, hour=h, minute=m, second=s)
         start_timepoint = datetime.datetime.timestamp(start)
 
-        y, mo, d = dt.extract_date(end_date)
-        h, m, s = dt.extract_time(end_time)
+        y, mo, d = gr.extract_date(end_date)
+        h, m, s = gr.extract_time(end_time)
 
         end = datetime.datetime(year=y, month=mo, day=d,
                                 hour=h, minute=m, second=s)

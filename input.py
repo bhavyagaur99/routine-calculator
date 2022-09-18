@@ -4,7 +4,7 @@ import os
 
 def get_int(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrscr=False, retryonerror=True,
             print_value=False):
-    number = 'Err'
+    number = 'Error'
     while True:
         okay = True
         if autoclrscr:  # Clear the screen before printing anything on the screen
@@ -16,7 +16,7 @@ def get_int(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrscr
         try:
             number = int(msg)
         except Exception as e:
-            print('Err:', e)
+            print('Error:', e)
             input('Hit enter to continue  .  .  .')
             okay = False
 
@@ -45,7 +45,7 @@ def get_int(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrscr
 
 def get_float(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrscr=False, retryonerror=True,
               print_value=False):
-    number = 'Err'
+    number = 'Error'
     while True:
         okay = True
         if autoclrscr:  # Clear the screen before printing anything on the screen
@@ -57,7 +57,7 @@ def get_float(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrs
         try:
             number = float(msg)
         except Exception as e:
-            print('Err:', e)
+            print('Error:', e)
             input('Hit enter to continue  .  .  .')
             okay = False
 
@@ -86,7 +86,7 @@ def get_float(start='>>> ', end='', min_range='-inf', max_range='+inf', autoclrs
 
 def get_string(start='>>> ', end='\n', min_len=0, max_len='+inf', autoclrscr=False, retryonerror=True,
                print_value=False):
-    msg = 'Err'
+    msg = 'Error'
     while True:
         okay = False
         if autoclrscr:  # Clear the screen before printing anything on the screen

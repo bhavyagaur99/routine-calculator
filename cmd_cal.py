@@ -7,7 +7,6 @@ import math
 # Hence convert all the time units to second and then perform any calculation
 
 def print_result():
-    gr.last_cal_result = 'None'
     total_sec = 0.0
     for k, v in gr.data_store['variables'].items():
         sec = gr.convert_to_seconds(v)
