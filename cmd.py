@@ -161,7 +161,7 @@ def execute(cmd):
         return True
 
     elif words[0] == 'dmap':
-        gr.data_store = {}
+        gr.data_store['variables'] = {}
         print('Map cleared')
 
     elif words[0] == 'diff' and len(words) > 4:
