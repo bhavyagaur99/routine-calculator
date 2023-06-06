@@ -1,5 +1,5 @@
-# routine-calculator
-A console application to track where you spend your time.
+# Routine Calculator
+A console application to track where you spend your time
 
 ## Features
 - cal command to calculate time spent
@@ -8,9 +8,8 @@ A console application to track where you spend your time.
 - diff command to calculate the difference between two points in time
 
 ## Installation
-1. Clone the repository
-2. pip3 install -r requirements.txt
-3. python3 main.py
+- Clone this repository
+- pip3 install -r requirements.txt
 
 ## Usage
 python3 main.py
