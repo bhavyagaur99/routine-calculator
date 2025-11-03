@@ -49,6 +49,12 @@ def delete_variable_in_store(key):
         return e, False
 
 
+def save_data_store():
+    global data_store
+    filename = get_savefile_name()
+    store.savemap(filename=filename, data_store=data_store)
+
+
 def get_database_path() -> str:
     return database_path
 

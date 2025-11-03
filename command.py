@@ -118,6 +118,7 @@ def execute(cmd):
         start = datetime.datetime(
             year=y, month=mo, day=d, hour=h, minute=m, second=s)
         gr.data_store['start_time'] = datetime.datetime.timestamp(start)
+        gr.save_data_store()
         print('start time update =', start)
 
     elif words[0] == 'pvar' and len(words) > 1:
