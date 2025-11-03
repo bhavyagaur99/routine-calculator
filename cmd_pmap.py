@@ -10,7 +10,6 @@ def print_map():
         return False
     
     if gr.data_store and gr.data_store.get('variables'):
-        print()
         print("items")
         print("-----")
         print(yaml.dump(gr.data_store.get('variables')))
@@ -18,7 +17,6 @@ def print_map():
     if gr.data_store and gr.data_store.get('start_time'):
         start = datetime.datetime.fromtimestamp(gr.data_store.get('start_time'))
         formatted_time = start.strftime("%d/%m/%Y %H:%M:%S")
-        print()
         print("start time")
         print("----------")
         print(formatted_time)
