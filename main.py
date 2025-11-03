@@ -3,7 +3,7 @@
 import input as imp
 import global_resource as gr
 import load
-import cmd
+import command
 
 
 filename = gr.get_savefile_name()
@@ -18,7 +18,7 @@ while True:
         print()
         inpcmd = imp.get_string(start='routinecal >>> ', min_len=2, max_len=4096)
         print()
-        if not cmd.execute(inpcmd):
+        if not command.execute(inpcmd):
             print('Error: syntax or format error type "help me"')
     except Exception as e:
         print('Error: ', e)

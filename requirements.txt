@@ -1,2 +1,2 @@
-python-dotenv==0.21.0
-simpleeval==0.9.12
+python-dotenv==1.0.0
+simpleeval==0.9.13

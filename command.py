@@ -40,8 +40,8 @@ def execute(cmd):
             if not gr.check_date(date):
                 return False
             year, month, day = gr.extract_date(date)
-            today = f'{day}-{month}-{year}'
-            cmd_savemap.save_by_today(today)
+            today = datetime.datetime(year=year, month=month, day=day)
+            cmd_savemap.save_by_custom_date(today)
             return True
 
     elif words[0] in ['loadmap', 'lmap']:
