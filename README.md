@@ -9,7 +9,15 @@ A console application to track where you spend your time
 
 ## Installation
 - Clone this repository
-- pip3 install -r requirements.txt
+- Install using pip (or uv):
+  ```bash
+  pip install .
+  # or
+  uv tool install .
+  ```
 
 ## Usage
-python3 main.py
+Run the application using the command:
+```bash
+routine-calculator
+```

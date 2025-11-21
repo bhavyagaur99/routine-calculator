@@ -1,6 +1,6 @@
 import os
 import re
-import store
+import routine_calculator.store as store
 import datetime
 from dotenv import load_dotenv
 from typing import Tuple, Any, Optional, List
@@ -9,9 +9,7 @@ from typing import Tuple, Any, Optional, List
 load_dotenv()
 debug = True
 cwd = os.getcwd()
-base_dir = os.getenv('BASE_DIR', None)
-if base_dir is None:
-    base_dir = os.path.join(cwd, 'data')
+base_dir = os.getenv('BASE_DIR', os.getcwd())
 database_path = os.path.join(base_dir, 'data', 'routine-calculator')
 start_time = 0.0  # Store start time in seconds
 auto_screen_clear = False

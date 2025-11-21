@@ -1,4 +1,4 @@
-import global_resource as gr
+import routine_calculator.global_resource as gr
 
 
 def print_var(var):

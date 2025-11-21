@@ -1,16 +1,16 @@
-import global_resource as gr
+import routine_calculator.global_resource as gr
 import sys
 import os
 import datetime
 import calendar
-import cmd_pmap
-import cmd_plresult
-import cmd_cal
-import cmd_help
-import cmd_pvar
-import cmd_eval
-import cmd_savemap
-import cmd_loadmap
+import routine_calculator.cmd_pmap as cmd_pmap
+import routine_calculator.cmd_plresult as cmd_plresult
+import routine_calculator.cmd_cal as cmd_cal
+import routine_calculator.cmd_help as cmd_help
+import routine_calculator.cmd_pvar as cmd_pvar
+import routine_calculator.cmd_eval as cmd_eval
+import routine_calculator.cmd_savemap as cmd_savemap
+import routine_calculator.cmd_loadmap as cmd_loadmap
 
 
 def parse_date_arg(words):

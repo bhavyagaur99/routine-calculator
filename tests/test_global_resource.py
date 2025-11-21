@@ -1,11 +1,5 @@
 import unittest
-import sys
-import os
-
-# Add parent directory to path so we can import modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import global_resource as gr
+import routine_calculator.global_resource as gr
 
 class TestGlobalResource(unittest.TestCase):
 

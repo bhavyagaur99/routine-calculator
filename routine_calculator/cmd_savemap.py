@@ -1,7 +1,7 @@
 import os
-import store
+import routine_calculator.store as store
 import datetime
-import global_resource as gr
+import routine_calculator.global_resource as gr
 
 def save_by_custom_date(date: datetime.datetime):
     filename = os.path.join(gr.database_path, str(date.year), str(date.month), str(date.day), 'map.json')
