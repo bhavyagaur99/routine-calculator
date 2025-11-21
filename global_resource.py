@@ -86,11 +86,19 @@ def get_map() -> dict:
 
 
 def check_variable_syntax(var: str) -> bool:
-    return True
+    regex_var = r'^[a-zA-Z_][a-zA-Z0-9_]*$'
+    if len(re.findall(regex_var, var)) == 1:
+        return True
+    print(f"Error: Invalid variable name '{var}'. Must start with a letter or underscore and contain only alphanumeric characters and underscores.")
+    return False
 
 
 def check_value_syntax(val: str) -> bool:
-    return True
+    regex_val = r'^\d+(\.\d+)?[smhdy]$'
+    if len(re.findall(regex_val, val)) == 1:
+        return True
+    print(f"Error: Invalid value '{val}'. Must be a number followed by a unit (s, m, h, d, y).")
+    return False
 
 
 def convert_to_seconds(value: str) -> float:
@@ -114,7 +122,10 @@ def g2ds(float_var: float) -> str:  # get 2 decimal float string
 
 
 def check_true_false_syntax(var: str) -> bool:
-    return True
+    if var.lower() in ['true', 'false']:
+        return True
+    print(f"Error: Invalid boolean '{var}'. Must be 'true' or 'false'.")
+    return False
 
 
 def check_time_format(time: str) -> bool:

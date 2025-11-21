@@ -47,5 +47,27 @@ class TestGlobalResource(unittest.TestCase):
         self.assertFalse(gr.check_time("24:00:00")) # Invalid hour
         self.assertFalse(gr.check_time("12:60:00")) # Invalid minute
 
+    def test_check_variable_syntax(self):
+        self.assertTrue(gr.check_variable_syntax("var"))
+        self.assertTrue(gr.check_variable_syntax("var_1"))
+        self.assertTrue(gr.check_variable_syntax("_var"))
+        self.assertFalse(gr.check_variable_syntax("1var"))
+        self.assertFalse(gr.check_variable_syntax("var-1"))
+        self.assertFalse(gr.check_variable_syntax("var space"))
+
+    def test_check_value_syntax(self):
+        self.assertTrue(gr.check_value_syntax("10s"))
+        self.assertTrue(gr.check_value_syntax("1.5h"))
+        self.assertTrue(gr.check_value_syntax("100d"))
+        self.assertFalse(gr.check_value_syntax("10"))
+        self.assertFalse(gr.check_value_syntax("10x"))
+        self.assertFalse(gr.check_value_syntax("s"))
+
+    def test_check_true_false_syntax(self):
+        self.assertTrue(gr.check_true_false_syntax("true"))
+        self.assertTrue(gr.check_true_false_syntax("FALSE"))
+        self.assertFalse(gr.check_true_false_syntax("yes"))
+        self.assertFalse(gr.check_true_false_syntax("0"))
+
 if __name__ == '__main__':
     unittest.main()
