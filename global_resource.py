@@ -3,6 +3,7 @@ import re
 import store
 import datetime
 from dotenv import load_dotenv
+from typing import Tuple, Any, Optional, List
 
 
 load_dotenv()
@@ -30,14 +31,14 @@ if debug:
     print('database path:', database_path)
 
 
-def update_variable_in_store(key, value):
+def update_variable_in_store(key: str, value: Any) -> Tuple[List[Any], bool]:
     global data_store
     data_store['variables'][key] = value
     filename = get_savefile_name()
     store.savemap(filename, data_store)
     return [key, value], True
 
-def delete_variable_in_store(key):
+def delete_variable_in_store(key: str) -> Tuple[Any, bool]:
     global data_store
     try:
         value = data_store['variables'][key]
@@ -49,7 +50,7 @@ def delete_variable_in_store(key):
         return e, False
 
 
-def save_data_store():
+def save_data_store() -> None:
     global data_store
     filename = get_savefile_name()
     store.savemap(filename=filename, data_store=data_store)
@@ -80,19 +81,19 @@ def get_savefile_name_custom(year: int, month: int, day: int) -> str:
     return filename
 
 
-def get_map():
+def get_map() -> dict:
     return data_store
 
 
-def check_variable_syntax(var):
+def check_variable_syntax(var: str) -> bool:
     return True
 
 
-def check_value_syntax(val):
+def check_value_syntax(val: str) -> bool:
     return True
 
 
-def convert_to_seconds(value):
+def convert_to_seconds(value: str) -> float:
     unit = value[-1]  # last character is the unit
     qty = float(value[:-1])  # remove the last character
     if unit == 's':
@@ -108,16 +109,16 @@ def convert_to_seconds(value):
     return qty
 
 
-def g2ds(float_var):  # get 2 decimal float string
+def g2ds(float_var: float) -> str:  # get 2 decimal float string
     return str('{:.2f}'.format(float_var))
 
 
-def check_true_false_syntax(var):
+def check_true_false_syntax(var: str) -> bool:
     return True
 
 
-def check_time_format(time):
-    regex_time = '\d{1,2}:\d{1,2}:\d{1,2}'
+def check_time_format(time: str) -> bool:
+    regex_time = r'\d{1,2}:\d{1,2}:\d{1,2}'
 
     if len(re.findall(regex_time, time)) != 1:
         return False
@@ -125,8 +126,8 @@ def check_time_format(time):
     return True
 
 
-def check_date_format(date):
-    regex_date = '\d{1,2}/\d{1,2}/\d{4}'
+def check_date_format(date: str) -> bool:
+    regex_date = r'\d{1,2}/\d{1,2}/\d{4}'
 
     if len(re.findall(regex_date, date)) != 1:
         return False
@@ -134,24 +135,9 @@ def check_date_format(date):
     return True
 
 
-def check_format(date, time, zone):
-    regex_date = '\d{1,2}/\d{1,2}/\d{4}'
-    regex_time = '\d{1,2}:\d{1,2}:\d{1,2}'
-    regex_zone = '[a-z]{2,32}'
-
-    if len(re.findall(regex_date, date)) != 1:
-        return False
-
-    if len(re.findall(regex_time, time)) != 1:
-        return False
-
-    if len(re.findall(regex_zone, zone)) != 1:
-        return False
-
-    return True
 
 
-def extract_date(date):
+def extract_date(date: str) -> Tuple[int, int, int]:
     d, mo, y = date.split('/')
     d = int(d)
     mo = int(mo)
@@ -159,7 +145,7 @@ def extract_date(date):
     return y, mo, d
 
 
-def extract_time(time):
+def extract_time(time: str) -> Tuple[int, int, int]:
     h, m, s = time.split(':')
     h = int(h)
     m = int(m)
@@ -167,7 +153,7 @@ def extract_time(time):
     return h, m, s
 
 
-def check_date_value(value):
+def check_date_value(value: Tuple[int, int, int]) -> bool:
     try:
         datetime.date(year=value[0], month=value[1], day=value[2])
         return True
@@ -175,7 +161,7 @@ def check_date_value(value):
         return False
 
 
-def check_time_value(value):
+def check_time_value(value: Tuple[int, int, int]) -> bool:
     try:
         datetime.time(hour=value[0], minute=value[1], second=value[2])
         return True
@@ -183,7 +169,7 @@ def check_time_value(value):
         return False
 
 
-def check_date(date):
+def check_date(date: str) -> bool:
     if not check_date_format(date):
         return False
     y, mo, d = extract_date(date)
@@ -192,7 +178,7 @@ def check_date(date):
     return True
 
 
-def check_time(time):
+def check_time(time: str) -> bool:
     if not check_time_format(time):
         return False
     h, m, s = extract_time(time)
@@ -201,7 +187,7 @@ def check_time(time):
     return True
 
 
-def check_date_and_time(v):
+def check_date_and_time(v: Tuple[int, int, int, int, int, int]) -> bool:
     try:
         datetime.datetime(year=v[0], month=v[1], day=v[2],
                           hour=v[3], minute=v[4], second=v[5])
@@ -210,19 +196,19 @@ def check_date_and_time(v):
         return False
 
 
-def convert_date_and_time_to_seconds(v):
+def convert_date_and_time_to_seconds(v: Tuple[int, int, int, int, int, int]) -> float:
     try:
         val1 = datetime.datetime(
             year=v[0], month=v[1], day=v[2], hour=v[3], minute=v[4], second=v[5])
         val2 = datetime.datetime(year=1970, month=1, day=1)
         return abs((val2 - val1).total_seconds())
     except ValueError:
-        return -1
+        return -1.0
 
 
-def now():
+def now() -> datetime.datetime:
     return datetime.datetime.now()
 
 
-def time_format_1():
+def time_format_1() -> str:
     return datetime.datetime.now().strftime('%H:%M:%S')
