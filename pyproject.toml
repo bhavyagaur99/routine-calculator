@@ -12,10 +12,12 @@ dependencies = [
     "python-dotenv==1.0.0",
     "PyYAML==6.0.3",
     "simpleeval==0.9.13",
+    "streamlit==1.52.1",
 ]
 
 [project.scripts]
 routine-calculator = "routine_calculator.main:main"
+routine-calculator-web = "routine_calculator.launch_web:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

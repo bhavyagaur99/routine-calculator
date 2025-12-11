@@ -21,3 +21,10 @@ Run the application using the command:
 ```bash
 routine-calculator
 ```
+
+### Web Interface (Streamlit)
+Run the web interface from anywhere:
+  ```bash
+  routine-calculator-web
+  ```
+
